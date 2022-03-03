@@ -1,0 +1,52 @@
+DOCTL CLI KSV-Manual
+
+
+https://docs.digitalocean.com/reference/doctl/reference/
+https://technoglitz.com/russia/%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B-%D1%81-doctl-%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%BC-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D0%BE%D0%B9-%D1%81/
+https://konstantinklepikov.github.io/myknowlegebase/notes/digital-ocean-doctl.html
+
+===============================================================================
+$ doctl compute region list | grep true
+
+Slug    Name               Available
+lon1    London 1           true
+nyc3    New York 1|3       true
+ams3    Amsterdam 3        true
+fra1    Frankfurt 1        true
+blr1    Bangalore 1        true
+
+--
+doctl compute droplet [list]           # List Droplets on your account
+doctl compute image list               # List images on your account
+
+doctl compute image list-distribution  # List available distribution images:
+ID           Name                  Type        Distribution    Slug                   Public    Min Disk
+ 85722003    7 x64                 snapshot    CentOS          centos-7-x64           true      15
+ 85779954    8 x64                 snapshot    CentOS          centos-8-x64           true      15
+ 86718194    10 x64                snapshot    Debian          debian-10-x64          true      15
+ 92517214    11 x64                snapshot    Debian          debian-11-x64          true      15
+ 93525508    20.04 (LTS) x64       snapshot    Ubuntu          ubuntu-20-04-x64       true      15
+ 96967133    RockyLinux 8.4 x64    snapshot    Rocky Linux     rockylinux-8-4-x64     true      15
+
+---
+Information about Image:
+$ doctl compute image get 101537412 
+ID          Name      Type        Distribution    Slug             Public    Min Disk
+92517214    11 x64    snapshot    Debian          debian-11-x64    true      15
+
+---
+doctl compute droplet create --help  -- #Создание дроплета
+doctl compute droplet create <droplet-name>... [flags]
+
+doctl compute droplet create vm_name --region fra1 --ssh-keys фингерпринт --tag-names yours__yandex_ru --image ubuntu-20-04-x64 --size s-1vcpu-2gb
+
+Example:
+doctl compute droplet create ksv-cos7-srv1 --image ubuntu-20-04-x64 --size s-1vcpu-2gb --region ams3 linux,kornilovsv_at_yandex_ru
+
+Find my droplet vm: 
+doctl compute droplet list | grep ksv
+
+---
+doctl compute droplet delete ID -- # Permanently delete a Droplet
+
+
