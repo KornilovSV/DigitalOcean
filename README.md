@@ -1,8 +1,6 @@
 # DigitalOcean
 DigitalOcean - Notes
 
-# DigitalOcean
-
 # Create a new repository on the command line
 echo "# DigitalOcean" >> README.md
 git init
